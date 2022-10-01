@@ -1,0 +1,5 @@
+Dificultad: Dificil
+<b>1.Última comida del día </b> <br> <b>2.Coloq. Niño de corta edad.</b> <br> <b> 3.Muy lejano.</b> <br> <b>4.Persona que tiene a su cargo un despacho de billetes de la lotería. <br>
+6x7
+0_0,1_0,2_0,0_6,1_6,2_6,3_6,4_6,5_6,4_0,0_5,1_5,2_5 0_0,2_0,3_0,5_0
+CENA PENA NENA REMOTO MOTERO LOTERO 

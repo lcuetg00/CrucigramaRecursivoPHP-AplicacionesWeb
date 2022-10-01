@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Crucigrama </title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/> 
+<link href="crucigrama.css" rel="stylesheet" type="text/css">
+<script src="script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<script>
+$(document).ready(function(){
+ $("#comprobarSol").click(function(){
+   $.ajax({
+    type: "POST",
+    url: "http://localhost/index.php",
+    data: { 
+      accion: 1,
+      enviarSol: solucion,
+      numCuestionario: opcion
+    },
+    success: function(output) {
+      alert(output);
+    }
+  });
+ });
+});
+</script>
+
+<body onload="permitirGuardarDatos()" >
+  <div class="cabecera" id="cabecera">
+    <h1> Crucigrama</h1>
+  </div>
+  
+  <div class="left">
+
+  
+
+  <h1> Selección del crucigrama</h1>
+
+<select id="numCrucigrama" onChange="seleccionCuestionario(this.value)">
+  </select> <br>
+
+
+<script>
+$(document).ready(function(){
+ $.ajax({
+  type: "POST",
+  url: "http://localhost/index.php",
+  data: { 
+   accion: 3
+  },
+  success: function(nombres) {
+   let array = new Array();
+   array = nombres.split("-");
+   let selectList = document.getElementById("numCrucigrama");
+
+
+   let label = document.createElement("option");
+   label.value = 0;
+   label.text = "Seleccione crucigrama";
+   selectList.appendChild(label);
+
+   for (var i=0; i<array.length; i++) {
+    let label = document.createElement("option");
+    label.value = i+1;
+    label.text = array[i];
+    selectList.appendChild(label);
+   }
+  }
+ });
+});
+
+
+</script>
+
+
+
+
+  
+  <button id=comprobarSol> Comprobar solucion </button>  <br>
+  <a id="numGuardados"></a>
+  <h1>Cargar Estados</h1>
+  <input id="guardar" type="button" value="Guardar" onclick="guardarDatos();" /> <br>
+  <input id="cargar1" type="button" value="Cargar1 (Primero en guardarse)" onclick="cargar(0);" /> <br>
+  <input id="cargar2" type="button" value="Cargar2 (Segundo en guardarse)" onclick="cargar(1);" /> <br>
+  <input id="cargar3" type="button" value="Cargar3 (Tercero en guardarse)" onclick="cargar(2);" /> <br>
+  <input id="borrartodo" type="button" value="Borrar Todo" onclick="borrarDatos();" /> <br>
+  <h1>Busquedas</h1>
+  <input type="text" id="busquedas">
+  <p>Escriba letras y pulse enter para buscar una palabra con el mismo tamaño y las mismas letras que las buscadas</p>
+  <script>
+  var textBusqueda = document.getElementById("busquedas");
+  textBusqueda.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    if(textBusqueda.value!="") {
+        darPista(textBusqueda.value)
+    }
+  }
+  });
+
+  </script>
+  <h1>Pistas</h1>
+  <a id="numRestante"></a>
+  <a id="pistas"></a>
+  </div>
+  <div class="right" id="crucigrama">
+  <a id="palabrasResolver"></a> <br>
+  <a id="opciones"> <h1>Opciones</h1>  
+  <p>El cuestionario solo se guarda al seleccionar la opción "guardar"</p>
+  <p>Al cargar la página se cargará el último cuestionario que se guardó</p>
+  <p>Puede borrar los cuestionarios almacenados con Borrar Todo" (borra todos los cuestionarios guardados)</p>
+  <p>Solo se pueden guardar el estado del cuestionario un máximo de 3 veces. Si se intenta guardar una cuarta vez, se borrará el estado más antiguo almacenado.</p> </a>
+    
+  </div>
+</body>
+</html>

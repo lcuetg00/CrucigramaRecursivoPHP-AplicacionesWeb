@@ -1,0 +1,5 @@
+Dificultad: Facil
+<b>1.Edificio para habitar</b> <br> <b>2.Cortar un pedazo de fruta para probarla</b> <br> 
+4x6
+0_0,1_0,2_0,3_0,0_5,1_5,2_5,3_5 0_0,3_0
+CASA CAPA CAVA CALA 
